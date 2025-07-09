@@ -2,10 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Minds</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #fff;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .container {
+            width: 66.7%;
+            padding: 20px;
+            text-align: left;
+        }
+        .company {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #55565B;
+        }
+        .info {
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #888;
+        }
+        .principals {
+            font-size: 12px;
+            font-weight: bold;
+            font-style: underline;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            color: #55565B;
+            text-decoration: underline;
+        }
+        .people {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: #55565B;
+        }
+        .footer {
+            font-size: 10px;
+            color: #888;
+            margin-top: 20px;
+        }
+        .email::after {
+            content: attr(data-user) "@" attr(data-domain);
+        }
+    </style>
 </head>
 <body>
-    <h1>GXL Ventures</h1>
-    <p>This website is being used to support hobbies and personal research.</p>
+    <div class="container">
+        <div class="company">GXL Ventures, LLC</div>
+        <div class="info">...innovative solutions</div>
+        <div class="info"><br></div>
+        <div class="info">Metairie, LA</div>
+        <div class="info">t: 504 457 8649</div>
+        <div class="info"><br></div>
+        <div class="info">contact: <span class="email" data-user="info" data-domain="gxlventures.com"></span></div>
+        <div class="principals">Principals</div></u>
+        <div class="people">Geoff Single, P.E.</div>
+        <div class="info"><br></div>
+        <div class="info"><br></div>
+        <div class="info"><br></div>
+        <div class="footer">The name GXL Ventures is a registered trademark of GXL Ventures, LLC</div>
+    </div>
 </body>
 </html>
