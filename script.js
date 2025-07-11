@@ -11,30 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('particle-canvas');
             if (canvas) {
                 console.log('Canvas found, initializing particles');
-                // Debug: Draw a red rectangle (should now be 100x100)
-                const ctx = canvas.getContext('2d');
-                if (ctx) {
-                    ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
-                    ctx.fillRect(0, 0, 100, 100);
-                    console.log('Debug rectangle drawn on canvas');
-                } else {
-                    console.error('Canvas context not available');
-                }
                 try {
                     particlesJS('particle-canvas', {
                         particles: {
-                            number: { value: 20, density: { enable: true, value_area: 800 } },
+                            number: { value: 80, density: { enable: true, value_area: 800 } },
                             color: { value: '#ff0000' },
                             shape: { type: 'circle' },
-                            opacity: { value: 1.0 },
-                            size: { value: 15 },
-                            move: { enable: true, speed: 2, direction: 'none', random: true },
-                            line_linked: { enable: false }
+                            opacity: { value: 0.5, random: true, anim: { enable: false } },
+                            size: { value: 3, random: true, anim: { enable: false } },
+                            line_linked: { enable: true, distance: 150, color: '#ff0000', opacity: 0.4, width: 1 },
+                            move: { enable: true, speed: 6, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
                         },
                         interactivity: {
                             detect_on: 'canvas',
-                            events: { onhover: { enable: false }, onclick: { enable: false } },
-                            modes: { default: 'grab' }
+                            events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                            modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
                         },
                         retina_detect: true
                     }, () => {
@@ -57,15 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error: Canvas with id "particle-canvas" not found');
             }
         } else {
-            console.error('Local particlesJS not found, trying CDN');
-            const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
-            script.onload = () => {
-                console.log('CDN particles.js loaded, reinitializing');
-                checkParticlesJS();
-            };
-            script.onerror = () => console.error('CDN load failed');
-            document.head.appendChild(script);
+            console.error('particlesJS not found, CDN load failed');
         }
     }
 
@@ -103,7 +86,7 @@ if (/Mobi|Android/i.test(navigator.userAgent)) {
     console.log('Mobile detected, reducing particles');
     if (typeof particlesJS === 'function') {
         particlesJS('particle-canvas', {
-            particles: { number: { value: 10 }, color: { value: '#ff0000' }, opacity: { value: 1.0 }, size: { value: 10 } },
+            particles: { number: { value: 40 }, color: { value: '#ff0000' }, opacity: { value: 0.5 }, size: { value: 3 } },
             interactivity: { events: { onhover: { enable: false } } }
         }, () => {
             console.log('Mobile Particles.js initialized successfully');
