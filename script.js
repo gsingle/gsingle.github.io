@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('particle-canvas');
             if (canvas) {
                 console.log('Canvas found, initializing particles');
-                // Debug: Draw a red rectangle
+                // Debug: Draw a red rectangle (should now be 100x100)
                 const ctx = canvas.getContext('2d');
                 if (ctx) {
                     ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
@@ -23,28 +23,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     particlesJS('particle-canvas', {
                         particles: {
-                            number: { value: 20, density: { enable: true, value_area: 800 } }, // Standard density
-                            color: { value: '#ff0000' }, // Bright red
-                            shape: { type: 'circle' }, // Simple shape
-                            opacity: { value: 1.0 }, // Fully opaque
-                            size: { value: 15 }, // Larger size
-                            move: { enable: true, speed: 2, direction: 'none', random: true }, // Basic movement
-                            line_linked: { enable: false } // Disable lines for simplicity
+                            number: { value: 20, density: { enable: true, value_area: 800 } },
+                            color: { value: '#ff0000' },
+                            shape: { type: 'circle' },
+                            opacity: { value: 1.0 },
+                            size: { value: 15 },
+                            move: { enable: true, speed: 2, direction: 'none', random: true },
+                            line_linked: { enable: false }
                         },
                         interactivity: {
                             detect_on: 'canvas',
                             events: { onhover: { enable: false }, onclick: { enable: false } },
-                            modes: { default: 'grab' } // Minimal interactivity
+                            modes: { default: 'grab' }
                         },
-                        retina_detect: true // Enable for high-DPI screens
+                        retina_detect: true
                     }, () => {
                         console.log('Particles.js initialized successfully');
-                        // Force canvas redraw
                         const pjs = particlesJS('particle-canvas');
                         if (pjs && pjs.particles) {
                             console.log('Forced redraw of particles');
-                            pjs.particles.draw(); // Explicit draw call
-                            // Debug: Log particle count
+                            pjs.particles.draw();
                             console.log('Number of particles:', pjs.particles.array.length);
                         } else {
                             console.error('Particles object not available for redraw');
