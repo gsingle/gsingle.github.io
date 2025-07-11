@@ -15,16 +15,16 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            /* Removed width and height to use HTML attributes */
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" onload="console.log('CDN particles.js loaded')" onerror="console.error('CDN particles.js failed to load')"></script>
 </head>
 <body>
-    <canvas id="particle-canvas"></canvas>
+    <canvas id="particle-canvas" width="800" height="600"></canvas>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, checking for particles.js');
             if (typeof particlesJS === 'function') {
                 console.log('particlesJS library detected');
                 particlesJS('particle-canvas', {
@@ -32,8 +32,8 @@
                         number: { value: 80, density: { enable: true, value_area: 800 } },
                         color: { value: '#ff0000' },
                         shape: { type: 'circle' },
-                        opacity: { value: 0.5, random: true },
-                        size: { value: 5, random: true },
+                        opacity: { value: 0.7, random: true },
+                        size: { value: 7, random: true },
                         move: { enable: true, speed: 4, direction: 'none', random: true },
                         line_linked: { enable: false }
                     },
@@ -44,11 +44,19 @@
                     retina_detect: true
                 }, () => {
                     console.log('Particles.js initialized successfully');
+                    const pjs = particlesJS('particle-canvas');
+                    if (pjs && pjs.particles && pjs.particles.array) {
+                        console.log('Forced redraw of particles');
+                        pjs.particles.draw();
+                        console.log('Number of particles:', pjs.particles.array.length);
+                    } else {
+                        console.error('Particles object or array not available for redraw');
+                    }
                 }, (err) => {
                     console.error('Particles.js failed to initialize:', err);
                 });
             } else {
-                console.error('particlesJS not loaded');
+                console.error('particlesJS not detected, library likely failed to load');
             }
         });
     </script>
