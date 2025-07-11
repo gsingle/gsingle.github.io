@@ -1,131 +1,125 @@
-/* styles.css */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+// script.js
+console.log('Particles.js script loaded');
 
-body {
-    font-family: Arial, sans-serif;
-    height: 100vh;
-    background: #fff !important;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-}
-
-#particle-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: transparent;
-}
-
-.custom-cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background: #007bff;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1000;
-    transform: translate(-50%, -50%);
-    opacity: 0.5;
-    transition: transform 0.3s ease;
-}
-
-.wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-}
-
-.logo-container {
-    width: 33.3%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 40px 20px 20px 20px;
-}
-
-.logo {
-    max-width: 150px;
-}
-
-.container {
-    width: 66.7%;
-    padding: 20px;
-    text-align: left;
-}
-
-.company {
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #55565B;
-}
-
-.info {
-    font-size: 12px;
-    margin-bottom: 5px;
-    color: #888;
-}
-
-.principals {
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 5px;
-    color: #55565B;
-    text-decoration: underline;
-}
-
-.people {
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    color: #55565B;
-}
-
-.footer {
-    font-size: 10px;
-    color: #888;
-    margin-top: 20px;
-}
-
-.email::after {
-    content: attr(data-user) "@" attr(data-domain);
-}
-
-.info:hover, .people:hover {
-    color: #007bff;
-    transition: color 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    .wrapper {
-        flex-direction: column;
+// Initialize Particles.js with retry and error handling
+function initParticles() {
+    if (typeof particlesJS === 'function') {
+        console.log('Particles.js library detected');
+        window.addEventListener('load', () => {
+            console.log('DOM and scripts loaded, initializing Particles.js');
+            const canvas = document.getElementById('particle-canvas');
+            if (canvas) {
+                console.log('Canvas found, initializing Particles.js');
+                try {
+                    particlesJS('particle-canvas', {
+                        particles: {
+                            number: { value: 150, density: { enable: true, value_area: 800 } },
+                            color: { value: '#007bff' },
+                            shape: { type: 'circle' },
+                            opacity: { value: 1.0, random: false }, // Fully opaque
+                            size: { value: 8, random: true },
+                            line_linked: {
+                                enable: true,
+                                distance: 150,
+                                color: '#007bff',
+                                opacity: 0.8,
+                                width: 2
+                            },
+                            move: {
+                                enable: true,
+                                speed: 6,
+                                direction: 'none',
+                                random: false,
+                                straight: false,
+                                out_mode: 'out',
+                                bounce: false
+                            }
+                        },
+                        interactivity: {
+                            detect_on: 'canvas',
+                            events: {
+                                onhover: { enable: true, mode: 'repulse' },
+                                onclick: { enable: true, mode: 'push' },
+                                resize: true
+                            },
+                            modes: {
+                                repulse: { distance: 150, duration: 0.4 },
+                                push: { particles_nb: 5 }
+                            }
+                        },
+                        retina_detect: true
+                    }, () => {
+                        console.log('Particles.js initialized successfully');
+                    }, (err) => {
+                        console.error('Particles.js failed to initialize with callback:', err);
+                    });
+                } catch (e) {
+                    console.error('Exception during Particles.js initialization:', e);
+                }
+            } else {
+                console.error('Error: Canvas with id "particle-canvas" not found');
+            }
+        });
+    } else {
+        console.error('Error: Particles.js library not found or not a function');
+        setTimeout(initParticles, 500); // Retry after 500ms
     }
-    .logo-container {
-        width: 100%;
-        padding: 20px;
-        align-items: center;
-    }
-    .container {
-        width: 100%;
-        padding: 10px;
-        text-align: center;
-    }
-    .logo {
-        max-width: 100px;
-    }
-    .custom-cursor {
-        display: none;
-    }
+}
+
+initParticles();
+
+// GSAP animations
+gsap.from('.logo', {
+    opacity: 0,
+    y: -50,
+    duration: 1,
+    ease: 'power2.out'
+});
+
+gsap.from('.container > *', {
+    opacity: 0,
+    y: 20,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: 'power2.out',
+    delay: 0.5
+});
+
+document.querySelectorAll('.info, .people').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        gsap.to(item, { scale: 1.05, duration: 0.3, ease: 'power2.out' });
+    });
+    item.addEventListener('mouseleave', () => {
+        gsap.to(item, { scale: 1, duration: 0.3, ease: 'power2.out' });
+    });
+});
+
+// Custom cursor
+const cursor = document.querySelector('.custom-cursor');
+if (cursor) {
+    console.log('Custom cursor element found');
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+} else {
+    console.error('Error: Custom cursor element not found');
+}
+
+// Mobile optimization
+if (/Mobi|Android/i.test(navigator.userAgent)) {
+    console.log('Mobile detected, reducing particles');
+    particlesJS('particle-canvas', {
+        particles: {
+            number: { value: 30 },
+            color: { value: '#007bff' },
+            opacity: { value: 1.0 },
+            size: { value: 8 }
+        },
+        interactivity: { events: { onhover: { enable: false } } }
+    }, () => {
+        console.log('Mobile Particles.js initialized successfully');
+    }, (err) => {
+        console.error('Mobile Particles.js failed to initialize:', err);
+    });
 }
