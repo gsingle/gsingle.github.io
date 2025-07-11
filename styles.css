@@ -10,17 +10,14 @@ body {
     display: flex;
     position: relative;
     overflow: hidden;
-    /* Removed !important background to avoid covering canvas */
 }
 
 #particle-canvas {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: -1; /* Behind content but above body background */
-    background: rgba(0, 0, 0, 0.1); /* Debug: Slight tint to see canvas */
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.1); /* Debug tint */
 }
 
 .custom-cursor {
@@ -41,8 +38,8 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
-    z-index: 1; /* Ensure wrapper is above canvas */
-    background: transparent; /* Ensure no solid background */
+    z-index: 1;
+    background: transparent;
 }
 
 .logo-container {
