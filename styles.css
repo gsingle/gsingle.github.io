@@ -8,7 +8,7 @@
 body {
     font-family: Arial, sans-serif;
     height: 100vh;
-    background: #fff; /* White background */
+    background: #fff !important; /* Force white background */
     display: flex;
     position: relative;
     overflow: hidden;
@@ -21,7 +21,20 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1; /* Behind content */
-    background: transparent; /* Transparent canvas */
+    background: transparent; /* Ensure canvas is transparent */
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+    transition: transform 0.3s ease;
 }
 
 .wrapper {
@@ -54,13 +67,13 @@ body {
     font-size: 12px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #55565B; /* Original color */
+    color: #55565B;
 }
 
 .info {
     font-size: 12px;
     margin-bottom: 5px;
-    color: #888; /* Original color */
+    color: #888;
 }
 
 .principals {
@@ -91,11 +104,10 @@ body {
 }
 
 .info:hover, .people:hover {
-    color: #007bff; /* Blue hover effect */
+    color: #007bff;
     transition: color 0.3s ease;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .wrapper {
         flex-direction: column;
@@ -112,5 +124,8 @@ body {
     }
     .logo {
         max-width: 100px;
+    }
+    .custom-cursor {
+        display: none; /* Hide cursor on mobile */
     }
 }
