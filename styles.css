@@ -8,7 +8,7 @@
 body {
     font-family: Arial, sans-serif;
     height: 100vh;
-    background: #fff !important;
+    background: #D3D3D3 /*#fff !important;*/
     display: flex;
     position: relative;
     overflow: hidden;
