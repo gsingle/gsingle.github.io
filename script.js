@@ -14,18 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     particlesJS('particle-canvas', {
                         particles: {
-                            number: { value: 50, density: { enable: true, value_area: 800 } },
+                            number: { value: 20 }, // Simplified to minimal
                             color: { value: '#ff0000' },
                             shape: { type: 'circle' },
-                            opacity: { value: 1.0, random: false },
-                            size: { value: 10, random: true },
-                            line_linked: { enable: false },
-                            move: { enable: true, speed: 4, out_mode: 'out' }
+                            opacity: { value: 0.5 },
+                            size: { value: 5 },
+                            move: { enable: true, speed: 2 }
                         },
                         interactivity: {
-                            events: { onhover: { enable: false }, onclick: { enable: false }, resize: true }
-                        },
-                        retina_detect: true
+                            events: { onhover: { enable: false }, onclick: { enable: false } }
+                        }
                     }, () => {
                         console.log('Particles.js initialized successfully');
                     }, (err) => {
@@ -38,8 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error: Canvas with id "particle-canvas" not found');
             }
         } else {
-            console.error('particlesJS not found, retrying in 500ms');
-            setTimeout(checkParticlesJS, 500);
+            console.error('Local particlesJS not found, trying CDN');
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+            script.onload = () => {
+                console.log('CDN particles.js loaded, reinitializing');
+                checkParticlesJS(); // Retry after CDN load
+            };
+            script.onerror = () => console.error('CDN load failed');
+            document.head.appendChild(script);
         }
     }
 
@@ -77,7 +82,7 @@ if (/Mobi|Android/i.test(navigator.userAgent)) {
     console.log('Mobile detected, reducing particles');
     if (typeof particlesJS === 'function') {
         particlesJS('particle-canvas', {
-            particles: { number: { value: 20 }, color: { value: '#ff0000' }, opacity: { value: 1.0 }, size: { value: 10 } },
+            particles: { number: { value: 10 }, color: { value: '#ff0000' }, opacity: { value: 0.5 }, size: { value: 5 } },
             interactivity: { events: { onhover: { enable: false } } }
         }, () => {
             console.log('Mobile Particles.js initialized successfully');
