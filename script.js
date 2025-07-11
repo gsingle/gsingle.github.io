@@ -1,7 +1,7 @@
 // script.js
 console.log('Particles.js script loaded');
 
-// Initialize Particles.js with retry
+// Initialize Particles.js with retry and error handling
 function initParticles() {
     if (typeof particlesJS === 'function') {
         console.log('Particles.js library detected');
@@ -51,7 +51,7 @@ function initParticles() {
                     }, () => {
                         console.log('Particles.js initialized successfully');
                     }, (err) => {
-                        console.error('Particles.js failed to initialize:', err);
+                        console.error('Particles.js failed to initialize with callback:', err);
                     });
                 } catch (e) {
                     console.error('Exception during Particles.js initialization:', e);
