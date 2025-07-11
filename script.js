@@ -70,14 +70,14 @@ initParticles();
 
 // GSAP animations
 gsap.from('.logo', {
-    opacity: 0.5,
+    opacity: 0,
     y: -50,
     duration: 1,
     ease: 'power2.out'
 });
 
 gsap.from('.container > *', {
-    opacity: 0.5,
+    opacity: 0,
     y: 20,
     duration: 0.8,
     stagger: 0.2,
