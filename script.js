@@ -1,45 +1,54 @@
 // script.js
-console.log('Particles.js script loaded'); // Debug log
+console.log('Particles.js script loaded');
+console.log('Attempting to initialize Particles.js on canvas: particle-canvas');
 
-// Particles.js configuration
-particlesJS('particle-canvas', {
-    particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } }, // Visible particle count
-        color: { value: '#007bff' }, // Blue particles to contrast white background
-        shape: { type: 'circle' },
-        opacity: { value: 0.6, random: true }, // Higher opacity for visibility
-        size: { value: 3, random: true }, // Visible size
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: '#007bff', // Blue lines
-            opacity: 0.4,
-            width: 1
+// Verify canvas exists
+const canvas = document.getElementById('particle-canvas');
+if (canvas) {
+    console.log('Canvas found, initializing Particles.js');
+    particlesJS('particle-canvas', {
+        particles: {
+            number: { value: 100, density: { enable: true, value_area: 800 } },
+            color: { value: '#007bff' }, // Blue particles
+            shape: { type: 'circle' },
+            opacity: { value: 0.8, random: true }, // High opacity
+            size: { value: 4, random: true }, // Larger particles
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#007bff',
+                opacity: 0.5,
+                width: 1.5
+            },
+            move: {
+                enable: true,
+                speed: 3,
+                direction: 'none',
+                random: false,
+                straight: false,
+                out_mode: 'out',
+                bounce: false
+            }
         },
-        move: {
-            enable: true,
-            speed: 2, // Moderate speed
-            direction: 'none',
-            random: false,
-            straight: false,
-            out_mode: 'out',
-            bounce: false
-        }
-    },
-    interactivity: {
-        detect_on: 'canvas',
-        events: {
-            onhover: { enable: true, mode: 'repulse' }, // Particles move away from cursor
-            onclick: { enable: true, mode: 'push' }, // Add particles on click
-            resize: true
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: { enable: true, mode: 'repulse' }, // Particles move away
+                onclick: { enable: true, mode: 'push' }, // Add particles on click
+                resize: true
+            },
+            modes: {
+                repulse: { distance: 120, duration: 0.4 },
+                push: { particles_nb: 5 }
+            }
         },
-        modes: {
-            repulse: { distance: 100, duration: 0.4 },
-            push: { particles_nb: 4 }
-        }
-    },
-    retina_detect: true
-});
+        retina_detect: true
+    }, () => {
+        console.log('Particles.js initialized successfully');
+    });
+} else {
+    console.log('Error: Canvas with id "particle-canvas" not found');
+}
 
 // GSAP animations
 gsap.from('.logo', {
@@ -58,7 +67,6 @@ gsap.from('.container > *', {
     delay: 0.5
 });
 
-// Hover animations
 document.querySelectorAll('.info, .people').forEach(item => {
     item.addEventListener('mouseenter', () => {
         gsap.to(item, { scale: 1.05, duration: 0.3, ease: 'power2.out' });
@@ -68,15 +76,27 @@ document.querySelectorAll('.info, .people').forEach(item => {
     });
 });
 
-// Optimize for mobile
+// Fallback custom cursor
+const cursor = document.querySelector('.custom-cursor');
+if (cursor) {
+    console.log('Custom cursor element found');
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+} else {
+    console.log('Error: Custom cursor element not found');
+}
+
+// Mobile optimization
 if (/Mobi|Android/i.test(navigator.userAgent)) {
     console.log('Mobile detected, reducing particles');
     particlesJS('particle-canvas', {
         particles: {
             number: { value: 30 },
             color: { value: '#007bff' },
-            opacity: { value: 0.6 },
-            size: { value: 3 }
+            opacity: { value: 0.8 },
+            size: { value: 4 }
         },
         interactivity: { events: { onhover: { enable: false } } }
     });
