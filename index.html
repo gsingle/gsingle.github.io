@@ -3,62 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Red Particles</title>
+    <title>GXL Ventures</title>
+    <link rel="icon" type="image/jpeg" href="favicon.jpg"> <!-- Added favicon -->
     <style>
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #fff;
-            overflow: hidden;
+            height: 100vh;
+            background-color: #fff;
+            display: flex;
         }
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            /* Removed width and height to use HTML attributes */
+        .wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        .logo-container {
+            width: 33.3%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px 20px 20px;
+        }
+        .logo {
+            max-width: 150px;
+        }
+        .container {
+            width: 66.7%;
+            padding: 20px;
+            text-align: left;
+        }
+        .company {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #55565B;
+        }
+        .info {
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #888;
+        }
+        .principals {
+            font-size: 12px;
+            font-weight: bold;
+            font-style: underline;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            color: #55565B;
+            text-decoration: underline;
+        }
+        .people {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: #55565B;
+        }
+        .footer {
+            font-size: 10px;
+            color: #888;
+            margin-top: 20px;
+        }
+        .email::after {
+            content: attr(data-user) "@" attr(data-domain);
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" onload="console.log('CDN particles.js loaded')" onerror="console.error('CDN particles.js failed to load')"></script>
 </head>
 <body>
-    <canvas id="particle-canvas" width="800" height="600"></canvas>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM loaded, checking for particles.js');
-            if (typeof particlesJS === 'function') {
-                console.log('particlesJS library detected');
-                particlesJS('particle-canvas', {
-                    particles: {
-                        number: { value: 80, density: { enable: true, value_area: 800 } },
-                        color: { value: '#ff0000' },
-                        shape: { type: 'circle' },
-                        opacity: { value: 0.7, random: true },
-                        size: { value: 7, random: true },
-                        move: { enable: true, speed: 4, direction: 'none', random: true },
-                        line_linked: { enable: false }
-                    },
-                    interactivity: {
-                        detect_on: 'canvas',
-                        events: { onhover: { enable: false }, onclick: { enable: false }, resize: true }
-                    },
-                    retina_detect: true
-                }, () => {
-                    console.log('Particles.js initialized successfully');
-                    const pjs = particlesJS('particle-canvas');
-                    if (pjs && pjs.particles && pjs.particles.array) {
-                        console.log('Forced redraw of particles');
-                        pjs.particles.draw();
-                        console.log('Number of particles:', pjs.particles.array.length);
-                    } else {
-                        console.error('Particles object or array not available for redraw');
-                    }
-                }, (err) => {
-                    console.error('Particles.js failed to initialize:', err);
-                });
-            } else {
-                console.error('particlesJS not detected, library likely failed to load');
-            }
-        });
-    </script>
+    <div class="wrapper">
+        <div class="logo-container">
+            <!--<img src="GXL Logo - Color.jpg" alt="GXL Ventures Logo" class="logo">-->
+            <img src="gener (1).jpg" alt="GXL Ventures Logo" class="logo">
+            <img src="GXL Logo - Color.jpg" alt="GXL Ventures Logo" class="logo">
+            <!--<img src="gener (1).jpg" alt="GXL Ventures Logo" class="logo">-->
+        </div>
+        <div class="container">
+            <!--<div class="company">GXL Ventures, LLC</div>-->
+            <div class="company">GXL Ventures</div>
+            <div class="info">...innovative solutions</div>
+            <div class="info"><br></div>
+            <div class="info">Metairie, LA</div>
+            <div class="info">t: 504 457 8649</div>
+            <div class="info"><br></div>
+            <div class="info">contact: <span class="email" data-user="info" data-domain="gxlventures.com"></span></div>
+            <div class="principals">Principals</div>
+            <div class="people">Geoff Single, P.E.</div>
+            <div class="info"><br></div>
+            <div class="info"><br></div>
+            <div class="info"><br></div>
+            <!--<div class="footer">The name GXL Ventures is a registered trademark of GXL Ventures, LLC</div>-->
+        </div>
+    </div>
 </body>
 </html>
