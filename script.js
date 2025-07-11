@@ -4,21 +4,21 @@ console.log('Particles.js script loaded'); // Debug log
 // Particles.js configuration
 particlesJS('particle-canvas', {
     particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } }, // Increased for visibility
-        color: { value: '#ffffff' }, // White particles
+        number: { value: 80, density: { enable: true, value_area: 800 } }, // Visible particle count
+        color: { value: '#007bff' }, // Blue particles to contrast white background
         shape: { type: 'circle' },
-        opacity: { value: 0.5, random: true }, // Higher opacity
-        size: { value: 3, random: true }, // Larger particles
+        opacity: { value: 0.6, random: true }, // Higher opacity for visibility
+        size: { value: 3, random: true }, // Visible size
         line_linked: {
             enable: true,
             distance: 150,
-            color: '#ffffff',
+            color: '#007bff', // Blue lines
             opacity: 0.4,
             width: 1
         },
         move: {
             enable: true,
-            speed: 2, // Slightly faster
+            speed: 2, // Moderate speed
             direction: 'none',
             random: false,
             straight: false,
@@ -72,7 +72,12 @@ document.querySelectorAll('.info, .people').forEach(item => {
 if (/Mobi|Android/i.test(navigator.userAgent)) {
     console.log('Mobile detected, reducing particles');
     particlesJS('particle-canvas', {
-        particles: { number: { value: 30 } }, // Fewer particles
+        particles: {
+            number: { value: 30 },
+            color: { value: '#007bff' },
+            opacity: { value: 0.6 },
+            size: { value: 3 }
+        },
         interactivity: { events: { onhover: { enable: false } } }
     });
 }
