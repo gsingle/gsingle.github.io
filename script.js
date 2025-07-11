@@ -1,7 +1,7 @@
 // script.js
 console.log('Particles.js script loaded');
 
-// Initialize Particles.js with retry and error handling
+// Initialize Particles.js with retry and minimal config
 function initParticles() {
     if (typeof particlesJS === 'function') {
         console.log('Particles.js library detected');
@@ -13,39 +13,16 @@ function initParticles() {
                 try {
                     particlesJS('particle-canvas', {
                         particles: {
-                            number: { value: 150, density: { enable: true, value_area: 800 } },
-                            color: { value: '#007bff' },
+                            number: { value: 50, density: { enable: true, value_area: 800 } },
+                            color: { value: '#ff0000' }, // Red for visibility
                             shape: { type: 'circle' },
-                            opacity: { value: 1.0, random: false }, // Fully opaque
-                            size: { value: 8, random: true },
-                            line_linked: {
-                                enable: true,
-                                distance: 150,
-                                color: '#007bff',
-                                opacity: 0.8,
-                                width: 2
-                            },
-                            move: {
-                                enable: true,
-                                speed: 6,
-                                direction: 'none',
-                                random: false,
-                                straight: false,
-                                out_mode: 'out',
-                                bounce: false
-                            }
+                            opacity: { value: 1.0, random: false },
+                            size: { value: 10, random: true },
+                            line_linked: { enable: false }, // Disable lines for simplicity
+                            move: { enable: true, speed: 4, out_mode: 'out' }
                         },
                         interactivity: {
-                            detect_on: 'canvas',
-                            events: {
-                                onhover: { enable: true, mode: 'repulse' },
-                                onclick: { enable: true, mode: 'push' },
-                                resize: true
-                            },
-                            modes: {
-                                repulse: { distance: 150, duration: 0.4 },
-                                push: { particles_nb: 5 }
-                            }
+                            events: { onhover: { enable: false }, onclick: { enable: false }, resize: true }
                         },
                         retina_detect: true
                     }, () => {
@@ -106,16 +83,11 @@ if (cursor) {
     console.error('Error: Custom cursor element not found');
 }
 
-// Mobile optimization
+// Mobile optimization (simplified)
 if (/Mobi|Android/i.test(navigator.userAgent)) {
     console.log('Mobile detected, reducing particles');
     particlesJS('particle-canvas', {
-        particles: {
-            number: { value: 30 },
-            color: { value: '#007bff' },
-            opacity: { value: 1.0 },
-            size: { value: 8 }
-        },
+        particles: { number: { value: 20 }, color: { value: '#ff0000' }, opacity: { value: 1.0 }, size: { value: 10 } },
         interactivity: { events: { onhover: { enable: false } } }
     }, () => {
         console.log('Mobile Particles.js initialized successfully');
