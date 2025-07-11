@@ -14,7 +14,8 @@ function initParticles() {
                     particlesJS('particle-canvas', {
                         particles: {
                             number: { value: 150, density: { enable: true, value_area: 800 } },
-                            color: { value: '#007bff' },
+                            //color: { value: '#007bff' },
+                            color: { value: ['#007bff', '#55565B', '#ff0000'] }
                             shape: { type: 'circle' },
                             opacity: { value: 1.0, random: false }, // Fully opaque
                             size: { value: 8, random: true },
