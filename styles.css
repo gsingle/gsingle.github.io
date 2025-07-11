@@ -26,8 +26,8 @@ body {
 
 .custom-cursor {
     position: fixed;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     background: #007bff;
     border-radius: 50%;
     pointer-events: none;
