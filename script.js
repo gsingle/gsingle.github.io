@@ -39,14 +39,16 @@ function initParticles() {
                         interactivity: {
                             detect_on: 'canvas',
                             events: {
-                                onhover: { enable: true, mode: 'repulse' },
+                                //onhover: { enable: true, mode: 'repulse' },
+                                onhover: { enable: true, mode: 'grab' },
                                 onclick: { enable: true, mode: 'push' },
                                 resize: true
                             },
-                            modes: {
-                                repulse: { distance: 150, duration: 0.4 },
-                                push: { particles_nb: 5 }
-                            }
+                            modes: { grab: { distance: 200, line_linked: { opacity: 0.7 } } }
+                            //modes: {
+                            //    repulse: { distance: 150, duration: 0.4 },
+                            //    push: { particles_nb: 5 }
+                            //}
                         },
                         retina_detect: true
                     }, () => {
