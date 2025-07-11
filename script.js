@@ -11,10 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('particle-canvas');
             if (canvas) {
                 console.log('Canvas found, initializing particles');
+                // Debug: Draw a red rectangle to confirm canvas works
+                const ctx = canvas.getContext('2d');
+                if (ctx) {
+                    ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+                    ctx.fillRect(0, 0, 100, 100); // Red square in top-left
+                    console.log('Debug rectangle drawn on canvas');
+                } else {
+                    console.error('Canvas context not available');
+                }
                 try {
                     particlesJS('particle-canvas', {
                         particles: {
-                            number: { value: 20 }, // Simplified to minimal
+                            number: { value: 20 },
                             color: { value: '#ff0000' },
                             shape: { type: 'circle' },
                             opacity: { value: 0.5 },
@@ -41,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
             script.onload = () => {
                 console.log('CDN particles.js loaded, reinitializing');
-                checkParticlesJS(); // Retry after CDN load
+                checkParticlesJS();
             };
             script.onerror = () => console.error('CDN load failed');
             document.head.appendChild(script);
