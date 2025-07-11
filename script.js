@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('particle-canvas');
             if (canvas) {
                 console.log('Canvas found, initializing particles');
-                // Debug: Draw a red rectangle to confirm canvas works
+                // Debug: Draw a red rectangle
                 const ctx = canvas.getContext('2d');
                 if (ctx) {
                     ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
-                    ctx.fillRect(0, 0, 100, 100); // Red square in top-left
+                    ctx.fillRect(0, 0, 100, 100);
                     console.log('Debug rectangle drawn on canvas');
                 } else {
                     console.error('Canvas context not available');
@@ -23,18 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     particlesJS('particle-canvas', {
                         particles: {
-                            number: { value: 20 },
-                            color: { value: '#ff0000' },
-                            shape: { type: 'circle' },
-                            opacity: { value: 0.5 },
-                            size: { value: 5 },
-                            move: { enable: true, speed: 2 }
-                        },
-                        interactivity: {
-                            events: { onhover: { enable: false }, onclick: { enable: false } }
+                            number: { value: 10 }, // Minimal number
+                            color: { value: '#ff0000' }, // Bright red
+                            shape: { type: 'circle' }, // Simple shape
+                            opacity: { value: 1.0 }, // Fully opaque
+                            size: { value: 10 }, // Larger size
+                            move: { enable: true, speed: 2 } // Basic movement
                         }
                     }, () => {
                         console.log('Particles.js initialized successfully');
+                        // Force canvas redraw
+                        const pjs = particlesJS('particle-canvas');
+                        if (pjs) {
+                            console.log('Forced redraw of particles');
+                            pjs.particles.draw();
+                        }
                     }, (err) => {
                         console.error('Particles.js failed to initialize with callback:', err);
                     });
@@ -91,7 +94,7 @@ if (/Mobi|Android/i.test(navigator.userAgent)) {
     console.log('Mobile detected, reducing particles');
     if (typeof particlesJS === 'function') {
         particlesJS('particle-canvas', {
-            particles: { number: { value: 10 }, color: { value: '#ff0000' }, opacity: { value: 0.5 }, size: { value: 5 } },
+            particles: { number: { value: 5 }, color: { value: '#ff0000' }, opacity: { value: 1.0 }, size: { value: 10 } },
             interactivity: { events: { onhover: { enable: false } } }
         }, () => {
             console.log('Mobile Particles.js initialized successfully');
