@@ -21,6 +21,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1; /* Behind content */
+    background: transparent; /* Ensure canvas is transparent */
 }
 
 .wrapper {
@@ -53,13 +54,13 @@ body {
     font-size: 12px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #ffffff; /* Lighter color for contrast on dark background */
+    color: #ffffff;
 }
 
 .info {
     font-size: 12px;
     margin-bottom: 5px;
-    color: #cccccc; /* Lighter gray for readability */
+    color: #cccccc;
 }
 
 .principals {
@@ -89,8 +90,27 @@ body {
     content: attr(data-user) "@" attr(data-domain);
 }
 
-/* Hover effect for interactive elements */
 .info:hover, .people:hover {
-    color: #007bff; /* Blue hover effect like IOHK */
+    color: #007bff; /* Blue hover effect */
     transition: color 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+    }
+    .logo-container {
+        width: 100%;
+        padding: 20px;
+        align-items: center;
+    }
+    .container {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+    }
+    .logo {
+        max-width: 100px;
+    }
 }
