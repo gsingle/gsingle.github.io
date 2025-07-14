@@ -1,1 +1,182 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GXL Ventures</title>
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #fff; /* Fallback background color */
+            display: flex;
+            overflow: hidden;
+        }
+        .wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: -2;
+        }
+        .logo-container {
+            width: 33.3%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px 20px 20px;
+        }
+        .logo {
+            max-width: 150px;
+        }
+        .container {
+            width: 66.7%;
+            padding: 20px;
+            text-align: left;
+        }
+        .company {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #55565B;
+        }
+        .info {
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #888;
+        }
+        .principals {
+            font-size: 12px;
+            font-weight: bold;
+            font-style: underline;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            color: #55565B;
+            text-decoration: underline;
+        }
+        .people {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: #55565B;
+        }
+        .footer {
+            font-size: 10px;
+            color: #888;
+            margin-top: 20px;
+        }
+        .email::after {
+            content: attr(data-user) "@" attr(data-domain);
+        }
+        /* Particles.js canvas styling */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: none; 
+            // background-color: #ffffff; /* White background */
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="wrapper">
+        <div class="logo-container">
+            <img src="GXL Logo - Color.jpg" alt="GXL Ventures Logo" class="logo">
+        </div>
+        <div class="container">
+            <div class="company">GXL Ventures</div>
+            <div class="info">...innovative solutions</div>
+            <div class="info"><br></div>
+            <div class="info">Metairie, LA</div>
+            <div class="info">t: 504 457 8649</div>
+            <div class="info"><br></div>
+            <div class="info">contact: <span class="email" data-user="info" data-domain="gxlventures.com"></span></div>
+            <div class="principals">Principals</div>
+            <div class="people">Geoff Single, P.E.</div>
+            <div class="info"><br></div>
+            <div class="info"><br></div>
+            <div class="info"><br></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#87CEEB" // Light blue particles
+                    // "value": "#55565B" // Original gray color for reference
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false
+                },
+                "size": {
+                    "value": 3,
+                    "random": true
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#87CEEB", //"#87CEEB Light blue lines or #FA8072 red
+                    // "color": "#55565B", // Original gray color for reference
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out"
+                }
+            },
+            "interactivity": {
+                "detect_on": "window", // Changed to window for cursor interaction
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": false,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
